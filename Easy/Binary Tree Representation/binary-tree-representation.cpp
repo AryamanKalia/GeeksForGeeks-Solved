@@ -54,12 +54,25 @@ class Solution{
 public:
 
     void create_tree(node* root0, vector<int> &vec){
-         root0->left = newNode(vec[1]);
-        root0->right = newNode(vec[2]);
-        root0->left->left = newNode(vec[3]);
-        root0->left->right = newNode(vec[4]);
-        root0->right->left = newNode(vec[5]);
-        root0->right->right = newNode(vec[6]);
+         queue<node*> que;
+         
+         que.push(root0);
+         int size=vec.size();
+         int i = 1;
+         while(i<size){
+             node* temp= que.front();
+             que.pop();
+             if(i<size){
+                 temp->left = newNode(vec[i]);
+                 que.push(temp->left);
+                 i++;
+             }
+             if(i<size){
+                 temp->right=newNode(vec[i]);
+                 que.push(temp->right);
+                 i++;
+             }
+         }
     }
 
 };
